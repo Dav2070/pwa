@@ -1,0 +1,240 @@
+{
+  "main": {
+    "title": "COVID-19 Data Collection Form",
+    "paragraph1": "This form will take about 2 minutes to complete. \nBefore you begin, please select your language.",
+    "paragraph2": "Our study is currently only open to people within the below countries and/or territories. Please confirm that you are within one of these locations.",
+    "selectCountry": "Select country",
+    "nextButton": "Next"
+  },
+  "helpVirufy": {
+    "title": "Help Virufy make your smartphone an instant COVID-19 testing kit!",
+    "noteTitle": "Please note:",
+    "noteContent": "This form is for data collection only. It will not predict your COVID-19 status.",
+    "paragraph1": "<0>Virufy</0> is a Stanford COVID-19 Response Innovation Lab project that <2>is currently developing technology to predict COVID-19 infections within minutes, based on cough sounds.</2> We are a team of 50+ enthusiastic and ambitious youth and students from 25+ universities, with a global reach spanning 15+ countries. Our work is backed by our own clinical studies, as well as research from institutions including Carnegie Mellon, MIT, and Cambridge. <4>Click here</4> to learn more about our research.",
+    "paragraph2": "Our goal is to <1>increase access to testing and and healthcare around the globe.</1> We need your help!",
+    "paragraph3": "<0>Donate your cough and voice to help Virufy learn what COVID sounds like.</0> Your time and contributions to this study can benefit your own community, as well as the lives of millions of people across 190+ countries!",
+    "nextButton": "Next"
+  },
+  "consent": {
+    "title": "Consent to the Study",
+    "paragraph1": "Virufy cares about your privacy and is advised by licensed data privacy experts. The information and recordings you provide will only be used for the purposes described in our <1>Privacy Policy</1> and Consent Form. Please read the <3>consent form:</3>",
+    "paragraph2Title": "Virufy Explicit Consent to Collect Personal Information and Participate in Research Form",
+    "paragraph2": "\"Collection of Smartphone Data for Screening of COVID-19\"",
+    "paragraph3": "By checking the below boxes, you acknowledge that you have read and understood the Virufy <1>Privacy Policy</1>, and that you are providing your explicit consent to Virufy’s collection and processing of the categories of biometric and health information enumerated below. If you are located inside Brazilian national territory, and for the purposes of the General Personal Data Protection Law (“LGPD”), “consent”, in its free, informed, and unequivocal pronouncement, will be the legal basis on which we process sensitive personal data.",
+    "certify": "I certify that I am at least 18 years old and agree to the terms of the consent form.",
+    "agree": "I agree to the terms of the Virufy <1>Privacy Policy<1>.",
+    "nextButton": "Next",
+    "jumpToBottom": "Jump To Bottom"
+  },
+  "beforeStart": {
+    "title": "Lastly, before we begin...",
+    "subtitle": "To reduce risk and self-harm, we advise you to:",
+    "advise1": "Please use your own device and wear a mask when appropiate.",
+    "advise2": "Disinfect your device and any affected or nearby surfaces after recording your cough/speech.",
+    "advise3": "If you have an underlying condition that increases your risk from coughing, please check with your health care provider before participating.",
+    "advise4": "If you feel your symptoms are getting worse, please contact your local medical response.",
+    "startButton": "Start"
+  },
+  "recordingsIntroduction": {
+    "recordCough": {
+      "header": "Record your cough",
+      "title": "Instructions",
+      "intro1": "Please cough away from others around you! If you are feeling ill, please sit down.",
+      "intro2": "In a quiet environment, please press record and intentionally cough around 3-5 times."
+    },
+    "recordSpeech": {
+      "header": "Record your speech",
+      "intro1": "The sound of your voice can also help us learn what COVID sounds like! 'Please press record and count clearly from one to ten."
+    },
+    "next": "Next",
+    "releaseButtonStart": "Release to start recording",
+    "releaseButtonStop": "Release to stop recording",
+    "shortRecording": "Please make a recording of at least 5 seconds"
+  },
+  "recordingsRecord": {
+    "recordCough": {
+      "header": "Record your cough"
+    },
+    "recordSpeech": {
+      "header": "Record your speech"
+    },
+    "next": "Continue",
+    "delete": "Delete",
+    "text": "Click the record button and cough intentionally 3 to 5 times. When you are done, click continue.",
+    "textCount": "Click the record button and count clearly from one to ten. When you are done, click continue.",
+    "upload": "UPLOAD"
+  },
+  "recordingsRecordManual": {
+    "header": "Upload a file",
+    "addFile": "Add your file",
+    "constraint": "Add up to 5 MB",
+    "next": "Done",
+    "micError": "Can’t access the mic?",
+    "micErrorDescription": "Please upload an audio file here.",
+    "fileDurationTooShort": "Please upload a file of at least 5 seconds",
+    "fileSizeTooBig": "Please upload a file of less than 5 MB",
+    "fileRequired": "Please upload a file"
+  },
+  "recordingsListen": {
+    "recordCough": {
+      "header": "Record your cough",
+      "intro1": "Please cough away from others around you! Please sit down if you are feeling ill.",
+      "intro2": " In a quiet environment, please press record and intentionally cough around 3-5 times."
+    },
+    "recordSpeech": {
+      "header": "Record your speech",
+      "intro1": "The sound of your voice can also help us learn what COVID sounds like! 'Please press record and count clearly from one to ten."
+    },
+    "title": "Recording uploaded",
+    "subtitle": "Feel free to take a listen.",
+    "next": "Done"
+  },
+  "questionary": {
+    "headerText": "Answer short questions",
+    "title": "Let’s answer some questions!",
+    "caption": "Please answer the following to the best of your ability.",
+    "testTaken": {
+      "question": "Which of the following tests have you taken for COVID-19?",
+      "options": {
+        "pcr": "PCR-based test (e.g. nose or mouth swab)",
+        "antibody": "Antibody test (e.g. finger stick or blood draw)",
+        "neither": "Neither",
+        "antigen": "Antigen test (e.g. nose or mouth swab)"
+      }
+    },
+    "headerText2": "Follow-up question",
+    "whenPcrTest": "When did you take your PCR-based COVID-19 test? Please estimate if unsure.",
+    "resultPcrTest": {
+      "question": "What was the result of your PCR-based COVID-19 test?",
+      "options": {
+        "positive": "Positive",
+        "negative": "Negative",
+        "pending": "Pending"
+      }
+    },
+    "whenAntibodyTest": "When did you take your antibody test for COVID-19? Please estimate if unsure.",
+    "resultAntibodyTest": {
+      "question": "What was the result of your antibody test for COVID-19?",
+      "options": {
+        "positive": "Positive",
+        "negative": "Negative",
+        "pending": "Pending"
+      }
+    },
+    "whenAntigenTest": "When did you take your antigen test for COVID-19? Please estimate if unsure.",
+    "resultAntigenTest": {
+      "question": "What was the result of your antigen test for COVID-19?",
+      "options": {
+        "positive": "Positive",
+        "negative": "Negative",
+        "pending": "Pending"
+      }
+    },
+    "ageGroup": "Please select your age group.",
+    "unselectedAgeGroup": "Select age group",
+    "gender": {
+      "question": "What is your gender identity?",
+      "options": {
+        "male": "Male",
+        "female": "Female",
+        "notToSay": "Prefer not to say",
+        "selfDescribe": "Prefer to self-describe"
+      }
+    },
+    "biologicalSex": {
+      "question": "What is your biological sex?",
+      "note": "The sound of the voice for males and females varies. This is important for the AI to help detect COVID-19.",
+      "options": {
+        "male": "Male",
+        "female": "Female"
+      }
+    },
+    "smokeLastSixMonths": {
+      "question": "Have you smoked regularly any time within the last six months?",
+      "note": "This includes cigarettes, hookah, tobacco pipes, marijuana, and vape with nicotine.",
+      "options": {
+        "yes": "Yes",
+        "no": "No"
+      }
+    },
+    "symptoms": {
+      "question": "Which of the below symptoms do you currently have? (Select all that apply)",
+      "options": {
+        "bodyAches": "Body aches",
+        "dryCough": "Cough (dry)",
+        "wetCough": "Cough (wet, with mucus)",
+        "feverChillsSweating": "Fever, chills, or sweating",
+        "headaches": "Headaches",
+        "lossTasteOrSmell": "Loss of taste and/or smell",
+        "worseCough": "New or worsening cough",
+        "breathShortness": "Shortness of breath",
+        "soreThroat": "Sore throat",
+        "chestTightness": "Tightness in chest",
+        "vomitingAndDiarrhea": "Vomiting and diarrhea",
+        "none": "None",
+        "addOther": "+ Add other"
+      },
+      "addOtherPlaceholder": "Other symptom"
+    },
+    "symptomsDate": "When did you begin experiencing cough, fever, and/or shortness of breath? Please estimate if unsure.",
+    "respiration": {
+      "question": "Which of the below respiratory conditions do you currently have?",
+      "options": {
+        "asthma": "Asthma",
+        "bronchitis": "Bronchitis",
+        "emphysema": "COPD/emphysema",
+        "otherChronic": "Other chronic lung disease",
+        "pneumonia": "Pneumonia",
+        "tuberculosis": "Tuberculosis",
+        "none": "None",
+        "addOther": "+ Add other"
+      },
+      "addOtherPlaceholder": "Other condition"
+    },
+    "medical": {
+      "question": "Which of the below medical conditions do you currently have?",
+      "options": {
+        "chronicLung": "Chronic lung disease",
+        "congestiveHeart": "Congestive heart failure",
+        "cough": "Cough from other medical conditions",
+        "obesity": "Extreme obesity",
+        "hiv": "HIV, AIDS, or impaired immune system",
+        "pulmonary": "Pulmonary fibrosis",
+        "pregnancy": "Pregnancy",
+        "valvularHeart": "Valvular heart disease",
+        "none": "None",
+        "addOther": "+ Add other"
+      },
+      "addOtherPlaceholder": "Other condition"
+    },
+    "proceedButton": "Proceed to last step",
+    "stepOf": "of",
+    "nextButton": "Next",
+    "submitting": "Submitting..."
+  },
+  "beforeSubmit": {
+    "headText": "Share your contact info (optional)",
+    "title": "We still need your help to fight this pandemic!",
+    "paragraph1": "Your donation means a lot to us and we would love for you to donate again! Cough and speech sounds can change, and understanding and learning from these changes will strengthen our scientific research.",
+    "paragraph2": "If you are interested in continuing to contribute to your communities and the world through Virufy, please share your contact information so that we can follow up with you (for example, we may wish to send you a verification message and reminders by email, WhatsApp, or SMS to upload subsequent cough samples or to contact you in relation to your COVID-19 status).",
+    "phoneLabel": "What is your mobile phone number?",
+    "phonePlaceholder": "Your phone number",
+    "emailLabel": "What is your email address?",
+    "emailPlaceholder": "Your email address",
+    "submitButton": "Submit form",
+    "submitError": "An error occurred. Please try again."
+  },
+  "thankyou": {
+    "title": "Thank you for submitting.",
+    "paragraph1": "Your cough and speech donation brings Virufy one step closer to changing the world.",
+    "paragraph2": "Your unique submission id:",
+    "paragraph3": "If you later develop symptoms such as cough, fever, or shortness of breath, please come back to resubmit your latest cough sounds.",
+    "downloadApp": "<1>Install the app.</1>",
+    "paragraph4": "Provide <1>feedback</1> for us to improve our application and check out our <3>website</3>!",
+    "paragraph5": "Learn more about Virufy with our <1>news</1>!",
+    "returnButton": "Submit another cough"
+  },
+  "footerReportProblems": {
+    "message": "Something wrong? Report an error"
+  }
+}
