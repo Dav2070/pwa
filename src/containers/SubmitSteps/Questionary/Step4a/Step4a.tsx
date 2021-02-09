@@ -114,7 +114,7 @@ const Step4a = ({
 
   return (
     <>
-      <ProgressIndicator currentStep={3} totalSteps={4} />
+      <ProgressIndicator currentStep={metadata?.progressCurrent || 3} totalSteps={metadata?.progressTotal || 4} />
 
       <GrayExtraInfo>{t('questionary:caption')}</GrayExtraInfo>
 

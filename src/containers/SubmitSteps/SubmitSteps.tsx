@@ -5,6 +5,9 @@ import { useHistory } from 'react-router-dom';
 // Wizard
 import Wizard from 'components/Wizard';
 
+// Local
+import stepsDefinition, { getCountry } from 'helper/stepsDefinitions';
+
 setStorageType(window.localStorage);
 
 const StoreKey = 'submit-steps';
@@ -23,231 +26,6 @@ createStore({
 }, {
   name: 'VirufyWizard',
 });
-
-const baseUrl = '/submit-steps';
-const baseComponentPath = 'SubmitSteps';
-const middleComponentPathRecording = 'RecordingsSteps';
-const middleComponentPathQuestionary = 'Questionary';
-const middleComponentPathSubmission = 'Submission';
-const recordYourCoughLogic = 'recordYourCough';
-const recordYourSpeechLogic = 'recordYourSpeech';
-
-const steps: Wizard.Step[] = [
-  // Record Your Cough Steps
-  {
-    path: '/step-record/cough',
-    componentPath: `${baseComponentPath}/${middleComponentPathRecording}/Introduction`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: '/welcome/step-4',
-      nextStep: `${baseUrl}/step-listen/cough`,
-      otherSteps: {
-        manualUploadStep: `${baseUrl}/step-manual-upload/cough`,
-      },
-      metadata: {
-        currentLogic: recordYourCoughLogic,
-      },
-    },
-  },
-  {
-    path: '/step-manual-upload/cough',
-    componentPath: `${baseComponentPath}/${middleComponentPathRecording}/RecordManualUpload`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: `${baseUrl}/step-record/cough`,
-      nextStep: `${baseUrl}/step-listen/cough`,
-      metadata: {
-        currentLogic: recordYourCoughLogic,
-      },
-    },
-  },
-  {
-    path: '/step-listen/cough',
-    componentPath: `${baseComponentPath}/${middleComponentPathRecording}/ListenAudio`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: `${baseUrl}/step-record/cough`,
-      nextStep: `${baseUrl}/step-record/speech`,
-      metadata: {
-        currentLogic: recordYourCoughLogic,
-      },
-    },
-  },
-  // Record Your Speech Steps
-  {
-    path: '/step-record/speech',
-    componentPath: `${baseComponentPath}/${middleComponentPathRecording}/Introduction`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: `${baseUrl}/step-listen/cough`,
-      nextStep: `${baseUrl}/step-listen/speech`,
-      otherSteps: {
-        manualUploadStep: `${baseUrl}/step-manual-upload/speech`,
-      },
-      metadata: {
-        currentLogic: recordYourSpeechLogic,
-      },
-    },
-  },
-  {
-    path: '/step-manual-upload/speech',
-    componentPath: `${baseComponentPath}/${middleComponentPathRecording}/RecordManualUpload`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: `${baseUrl}/step-record/speech`,
-      nextStep: `${baseUrl}/step-listen/speech`,
-      metadata: {
-        currentLogic: recordYourSpeechLogic,
-      },
-    },
-  },
-  {
-    path: '/step-listen/speech',
-    componentPath: `${baseComponentPath}/${middleComponentPathRecording}/ListenAudio`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: `${baseUrl}/step-record/speech`,
-      nextStep: `${baseUrl}/questionary/step1a`,
-      metadata: {
-        currentLogic: recordYourSpeechLogic,
-      },
-    },
-  },
-  // Questionary
-  {
-    path: '/questionary/step1a',
-    componentPath: `${baseComponentPath}/${middleComponentPathQuestionary}/Step1a`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: `${baseUrl}/step-listen/speech`,
-      nextStep: `${baseUrl}/questionary/step1b`,
-      otherSteps: {
-        noTestStep: `${baseUrl}/questionary/step2`,
-      },
-      metadata: {
-        current: 1,
-        total: 6,
-      },
-    },
-  },
-  {
-    path: '/questionary/step1b',
-    componentPath: `${baseComponentPath}/${middleComponentPathQuestionary}/Step1b`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: `${baseUrl}/questionary/step1a`,
-      nextStep: `${baseUrl}/questionary/step2`,
-      metadata: {
-        current: 1,
-        total: 6,
-      },
-    },
-  },
-  {
-    path: '/questionary/step2',
-    componentPath: `${baseComponentPath}/${middleComponentPathQuestionary}/Step2`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: `${baseUrl}/questionary/step1b`,
-      nextStep: `${baseUrl}/questionary/step3`,
-      otherSteps: {
-        noTestStep: `${baseUrl}/questionary/step1a`,
-      },
-      metadata: {
-        current: 2,
-        total: 6,
-      },
-    },
-  },
-  {
-    path: '/questionary/step3',
-    componentPath: `${baseComponentPath}/${middleComponentPathQuestionary}/Step3`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: `${baseUrl}/questionary/step2`,
-      nextStep: `${baseUrl}/questionary/step4a`,
-      metadata: {
-        current: 3,
-        total: 6,
-      },
-    },
-  },
-  {
-    path: '/questionary/step4a',
-    componentPath: `${baseComponentPath}/${middleComponentPathQuestionary}/Step4a`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: `${baseUrl}/questionary/step3`,
-      nextStep: `${baseUrl}/questionary/step5`,
-      otherSteps: {
-        covidSymptomsStep: `${baseUrl}/questionary/step4b`,
-      },
-      metadata: {
-        current: 4,
-        total: 6,
-      },
-    },
-  },
-  {
-    path: '/questionary/step4b',
-    componentPath: `${baseComponentPath}/${middleComponentPathQuestionary}/Step4b`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: `${baseUrl}/questionary/step4a`,
-      nextStep: `${baseUrl}/questionary/step5`,
-      metadata: {
-        current: 4,
-        total: 6,
-      },
-    },
-  },
-  {
-    path: '/questionary/step5',
-    componentPath: `${baseComponentPath}/${middleComponentPathQuestionary}/Step5`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: `${baseUrl}/questionary/step4a`,
-      nextStep: `${baseUrl}/questionary/step6`,
-      metadata: {
-        current: 5,
-        total: 6,
-      },
-    },
-  },
-  {
-    path: '/questionary/step6',
-    componentPath: `${baseComponentPath}/${middleComponentPathQuestionary}/Step6`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: `${baseUrl}/questionary/step5`,
-      // nextStep: `${baseUrl}/before-submit`,
-      nextStep: `${baseUrl}/thank-you`,
-      metadata: {
-        current: 6,
-        total: 6,
-      },
-    },
-  },
-  // Submission
-  // {
-  //   path: '/before-submit',
-  //   componentPath: `${baseComponentPath}/${middleComponentPathSubmission}/BeforeSubmit`,
-  //   props: {
-  //     storeKey: StoreKey,
-  //     previousStep: `${baseUrl}/questionary/step6`,
-  //     nextStep: `${baseUrl}/thank-you`,
-  //   },
-  // },
-  {
-    path: '/thank-you',
-    componentPath: `${baseComponentPath}/${middleComponentPathSubmission}/ThankYou`,
-    props: {
-      storeKey: StoreKey,
-      previousStep: `${baseUrl}/before-submit`,
-      nextStep: '/welcome',
-    },
-  },
-];
 
 const SubmitSteps = () => {
   // Hooks
@@ -308,12 +86,16 @@ const SubmitSteps = () => {
   return null;
 };
 
-const WrapperSubmitSteps = () => (
-  <Wizard
-    steps={steps}
-  >
-    <SubmitSteps />
-  </Wizard>
-);
+const WrapperSubmitSteps = () => {
+  const country = getCountry();
+  const steps = React.useMemo(() => stepsDefinition(StoreKey, country), [country]);
+  return (
+    <Wizard
+      steps={steps}
+    >
+      <SubmitSteps />
+    </Wizard>
+  );
+};
 
 export default React.memo(WrapperSubmitSteps);

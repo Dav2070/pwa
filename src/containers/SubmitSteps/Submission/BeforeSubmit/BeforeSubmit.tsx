@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import usePortal from 'react-useportal';
 import { useTranslation } from 'react-i18next';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 // Form
 import { useForm, Controller } from 'react-hook-form';
@@ -13,6 +12,7 @@ import * as Yup from 'yup';
 
 // Components
 import PhoneInput from 'components/PhoneInput';
+import Recaptcha from 'components/Recaptcha';
 
 // Update Action
 import { resetStore } from 'utils/wizard';
@@ -30,7 +30,7 @@ import ProgressIndicator from 'components/ProgressIndicator';
 import useAxios from 'hooks/useAxios';
 import {
   BeforeSubmitError,
-  BeforeSubmitImage, BeforeSubmitInput, BeforeSubmitLayout, BeforeSubmitText, BeforeSubmitTitle, RecaptchaContainer,
+  BeforeSubmitImage, BeforeSubmitInput, BeforeSubmitLayout, BeforeSubmitText, BeforeSubmitTitle,
 } from './style';
 
 const schema = Yup.object().shape({
@@ -44,6 +44,7 @@ const BeforeSubmit = ({
   previousStep,
   nextStep,
   storeKey,
+  metadata,
 }: Wizard.StepProps) => {
   // Hooks
   const { Portal } = usePortal({
@@ -51,7 +52,7 @@ const BeforeSubmit = ({
   });
   const { setDoGoBack, setTitle } = useHeaderContext();
   const history = useHistory();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { state, action } = useStateMachine(resetStore());
   const axiosClient = useAxios();
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
@@ -230,7 +231,7 @@ const BeforeSubmit = ({
 
   return (
     <>
-      <ProgressIndicator currentStep={4} totalSteps={4} />
+      <ProgressIndicator currentStep={metadata?.progressCurrent || 4} totalSteps={metadata?.progressTotal || 4} />
       <BeforeSubmitLayout>
         <BeforeSubmitTitle>{t('beforeSubmit:title')}</BeforeSubmitTitle>
         <BeforeSubmitText>{t('beforeSubmit:paragraph1')}</BeforeSubmitText>
@@ -272,13 +273,7 @@ const BeforeSubmit = ({
           )}
         />
       </BeforeSubmitLayout>
-      <RecaptchaContainer>
-        <ReCAPTCHA
-          sitekey={process.env.REACT_APP_RECAPTCHA_KEY || ''}
-          onChange={setCaptchaValue}
-          hl={i18n.language}
-        />
-      </RecaptchaContainer>
+      <Recaptcha onChange={setCaptchaValue} />
       {/* Bottom Buttons */}
       {submitError && (
         <BeforeSubmitError>

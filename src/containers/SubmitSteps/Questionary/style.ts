@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ReactComponent as WomanWithPhoneSvg } from 'assets/images/womanWithPhoneSide.svg';
 
 /* Delete after Contact info step is re-integrated */
-import { BeforeSubmitError, RecaptchaContainer } from 'containers/SubmitSteps/Submission/BeforeSubmit/style';
+import { BeforeSubmitError } from 'containers/SubmitSteps/Submission/BeforeSubmit/style';
 
 export const Title = styled.h1`
   font-family: "Open Sans";
@@ -86,4 +86,3 @@ export const QuestionRequiredIndicatorText = styled.span`
 export const TempBeforeSubmitError = styled(BeforeSubmitError)`
   margin-bottom: 16px;
 `;
-export const TempReCaptchaContainer = styled(RecaptchaContainer)``;
