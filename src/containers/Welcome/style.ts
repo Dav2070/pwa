@@ -199,3 +199,7 @@ export const WelcomeJumpToBottomContainer = styled.div`
       max-width: 470px;
     }
 `;
+
+export const RegionContainer = styled.div`
+  margin-top: 8px;
+`;

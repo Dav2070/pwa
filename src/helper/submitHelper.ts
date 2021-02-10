@@ -1,7 +1,7 @@
 import * as H from 'history';
 
 // Hooks
-// import { client as axiosClient } from 'hooks/useAxios';
+import { client as axiosClient } from 'hooks/useAxios';
 
 //
 import { removeSpeechIn } from 'helper/stepsDefinitions';
@@ -30,6 +30,7 @@ export async function doSubmit({
     const {
       language,
       country,
+      region,
 
       agreedConsentTerms,
       agreedPolicyTerms,
@@ -61,6 +62,9 @@ export async function doSubmit({
 
     body.append('language', language);
     body.append('country', country);
+    if (region) {
+      body.append('region', region);
+    }
 
     body.append('agreedConsentTerms', agreedConsentTerms);
     body.append('agreedPolicyTerms', agreedPolicyTerms);
@@ -132,18 +136,17 @@ export async function doSubmit({
       body.append('captchaValue', captchaValue);
     }
 
-    // const response = await axiosClient.post('saveSurvey', body, {
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data; boundary=SaveSurvey',
-    //   },
-    // });
+    const response = await axiosClient.post('saveSurvey', body, {
+      headers: {
+        'Content-Type': 'multipart/form-data; boundary=SaveSurvey',
+      },
+    });
 
     action({});
 
-    // if (nextStep && response.data?.submissionId) {
-    if (nextStep) {
+    if (nextStep && response.data?.submissionId) {
       setActiveStep(false);
-      history.push(nextStep, { submissionId: 'abcd' });
+      history.push(nextStep, { submissionId: response.data?.submissionId });
     }
   } catch (error) {
     console.log(error);

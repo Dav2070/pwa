@@ -6,8 +6,16 @@ const middleComponentPathSubmission = 'Submission';
 const recordYourCoughLogic = 'recordYourCough';
 const recordYourSpeechLogic = 'recordYourSpeech';
 
-export const removeSpeechIn = ['Brazil'];
-export const removeQuestionaryStep6In = ['Brazil'];
+export const removeSpeechIn: string[] = [
+  'Argentina',
+  'Bolivia',
+  'Brazil',
+  'Colombia',
+  'Mexico',
+  'Pakistan',
+  'Peru',
+];
+export const removeQuestionaryStep6In: string[] = [];
 
 function getWizardData() {
   try {

@@ -21,7 +21,7 @@ import useHeaderContext from 'hooks/useHeaderContext';
 
 // Data
 import { languageData } from 'data/lang';
-import { countryData } from 'data/country';
+import { countryData, countriesWithStates } from 'data/country';
 
 // Hooks
 import useWindowSize from 'hooks/useWindowSize';
@@ -32,11 +32,17 @@ import { scrollToTop } from 'helper/scrollHelper';
 // Styles
 import {
   WelcomeLogo, WelcomeTitle, WelcomeContent, WelcomeSubtitle, WelcomeStyledForm, WelcomeRequiredFieldText,
+  RegionContainer,
 } from '../style';
 
 const schema = Yup.object().shape({
   country: Yup.string().required(),
   language: Yup.string().required(),
+  region: Yup.string().when('country', {
+    is: (val: string) => countriesWithStates.includes(val),
+    then: Yup.string().required(),
+    else: Yup.string(),
+  }),
 }).defined();
 
 type Step1Type = Yup.InferType<typeof schema>;
@@ -51,13 +57,16 @@ const Step1 = (p: Wizard.StepProps) => {
   const { doGoBack, setDoGoBack } = useHeaderContext();
 
   const { state, action } = useStateMachine(updateAction(p.storeKey));
+
+  const store = state?.[p.storeKey];
   const {
     control,
     formState,
     handleSubmit,
     watch,
+    setValue,
   } = useForm({
-    defaultValues: state?.[p.storeKey],
+    defaultValues: store,
     resolver: yupResolver(schema),
     mode: 'onChange',
   });
@@ -75,6 +84,12 @@ const Step1 = (p: Wizard.StepProps) => {
     }
   };
 
+  const resetRegion = () => {
+    setValue('region', '', {
+      shouldValidate: true,
+    });
+  };
+
   useEffect(() => {
     scrollToTop();
 
@@ -86,6 +101,7 @@ const Step1 = (p: Wizard.StepProps) => {
   const { t, i18n } = useTranslation();
 
   const lang = watch('language');
+  const country = watch('country');
 
   useEffect(() => {
     i18n.changeLanguage(lang);
@@ -93,6 +109,21 @@ const Step1 = (p: Wizard.StepProps) => {
 
   const countrySelectOptions = useMemo(() => [{ name: t('main:selectCountry'), consentFormUrl: '', val: '' },
     ...countryData], [t]);
+
+  const regionSelectOptions = useMemo(() => {
+    const output = [
+      { name: t('main:selectRegion'), val: '' },
+    ];
+    if (country) {
+      const elem = countryData.find(a => a.val === country);
+      if (elem) {
+        elem.states.forEach(s => {
+          output.push({ name: s, val: s });
+        });
+      }
+    }
+    return output;
+  }, [t, country]);
 
   return (
     <WelcomeStyledForm>
@@ -130,10 +161,23 @@ const Step1 = (p: Wizard.StepProps) => {
           name="country"
           defaultValue={countrySelectOptions[0].val}
           render={({ onChange, value }) => (
-            <Dropdown onChange={e => onChange(e.currentTarget.value)} value={value}>
+            <Dropdown onChange={e => { onChange(e.currentTarget.value); resetRegion(); }} value={value}>
               {countrySelectOptions.map(({ name, val }) => <option key={name} id={name} value={val}>{name}</option>)}
             </Dropdown>
           )}
+        />
+
+        <Controller
+          control={control}
+          name="region"
+          defaultValue={regionSelectOptions[0].val}
+          render={({ onChange, value }) => (regionSelectOptions.length > 1 ? (
+            <RegionContainer>
+              <Dropdown onChange={e => onChange(e.currentTarget.value)} value={value}>
+                {regionSelectOptions.map(({ name, val }) => <option key={name} id={name} value={val}>{name}</option>)}
+              </Dropdown>
+            </RegionContainer>
+          ) : <></>)}
         />
 
         {activeStep && (
