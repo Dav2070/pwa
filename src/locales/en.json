@@ -13,7 +13,7 @@
     "noteContent": "This form is for data collection only. It will not predict your COVID-19 status.",
     "paragraph1": "<0>Virufy</0> is a Stanford COVID-19 Response Innovation Lab project that <2>is currently developing technology to predict COVID-19 infections within minutes, based on cough sounds.</2> We are a team of 50+ enthusiastic and ambitious youth and students from 25+ universities, with a global reach spanning 15+ countries. Our work is backed by our own clinical studies, as well as research from institutions including Carnegie Mellon, MIT, and Cambridge. <4>Click here</4> to learn more about our research.",
     "paragraph2": "Our goal is to <1>increase access to testing and and healthcare around the globe.</1> We need your help!",
-    "paragraph3": "<0>Donate your cough and voice to help Virufy learn what COVID sounds like.</0> Your time and contributions to this study can benefit your own community, as well as the lives of millions of people across 190+ countries!",
+    "paragraph3": "<0>Donate your cough to help Virufy learn what COVID sounds like.</0> Your time and contributions to this study can benefit your own community, as well as the lives of millions of people across 190+ countries!",
     "nextButton": "Next"
   },
   "consent": {
@@ -31,7 +31,7 @@
     "title": "Lastly, before we begin...",
     "subtitle": "To reduce risk and self-harm, we advise you to:",
     "advise1": "Please use your own device and wear a mask when appropiate.",
-    "advise2": "Disinfect your device and any affected or nearby surfaces after recording your cough/speech.",
+    "advise2": "Disinfect your device and any affected or nearby surfaces after recording your cough.",
     "advise3": "If you have an underlying condition that increases your risk from coughing, please check with your health care provider before participating.",
     "advise4": "If you feel your symptoms are getting worse, please contact your local medical response.",
     "startButton": "Start"
@@ -216,7 +216,7 @@
   "beforeSubmit": {
     "headText": "Share your contact info (optional)",
     "title": "We still need your help to fight this pandemic!",
-    "paragraph1": "Your donation means a lot to us and we would love for you to donate again! Cough and speech sounds can change, and understanding and learning from these changes will strengthen our scientific research.",
+    "paragraph1": "Your donation means a lot to us and we would love for you to donate again! Cough sounds can change, and understanding and learning from these changes will strengthen our scientific research.",
     "paragraph2": "If you are interested in continuing to contribute to your communities and the world through Virufy, please share your contact information so that we can follow up with you (for example, we may wish to send you a verification message and reminders by email, WhatsApp, or SMS to upload subsequent cough samples or to contact you in relation to your COVID-19 status).",
     "phoneLabel": "What is your mobile phone number?",
     "phonePlaceholder": "Your phone number",
@@ -227,7 +227,7 @@
   },
   "thankyou": {
     "title": "Thank you for submitting.",
-    "paragraph1": "Your cough and speech donation brings Virufy one step closer to changing the world.",
+    "paragraph1": "Your cough donation brings Virufy one step closer to changing the world.",
     "paragraph2": "Your unique submission id:",
     "paragraph3": "If you later develop symptoms such as cough, fever, or shortness of breath, please come back to resubmit your latest cough sounds.",
     "downloadApp": "<1>Install the app.</1>",
