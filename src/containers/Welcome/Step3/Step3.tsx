@@ -48,6 +48,8 @@ import {
 const schema = Yup.object().shape({
   agreedConsentTerms: Yup.boolean().required().default(false).oneOf([true]),
   agreedPolicyTerms: Yup.boolean().required().default(false).oneOf([true]),
+  agreedCovidDetection: Yup.boolean().required().default(false).oneOf([true]),
+  agreedTrainingArtificial: Yup.boolean().required().default(false).oneOf([true]),
 });
 
 type Step3Type = Yup.InferType<typeof schema>;
@@ -61,10 +63,12 @@ const Step3 = (p: Wizard.StepProps) => {
   const { setDoGoBack } = useHeaderContext();
 
   const { state, action } = useStateMachine(updateAction(p.storeKey));
+
+  const store = state?.[p.storeKey];
   const {
     control, handleSubmit, formState,
   } = useForm({
-    defaultValues: state?.[p.storeKey],
+    defaultValues: store,
     resolver: yupResolver(schema),
     mode: 'onChange',
   });
@@ -101,6 +105,7 @@ const Step3 = (p: Wizard.StepProps) => {
 
   const { t } = useTranslation();
   const currentCountry: PrivacyPolicyCountry = state.welcome.country;
+  const p3MarginBottom = (width && width > 560 ? 50 : 30);
 
   return (
     <WelcomeStyledFormAlternative>
@@ -120,17 +125,29 @@ const Step3 = (p: Wizard.StepProps) => {
 
         <WelcomeConsentForm dangerouslySetInnerHTML={{ __html: isLoadingFile ? 'Loading...' : consentFormContent }} />
 
-        <WelcomeSubtitle fontWeight={400} mb={width && width > 560 ? 50 : 30} textAlign="left" mt={width && width > 560 ? 28 : 20}>
+        <WelcomeSubtitle
+          fontWeight={400}
+          mb={store?.country !== 'Brazil' ? p3MarginBottom : 10}
+          textAlign="left"
+          mt={width && width > 560 ? 28 : 20}
+        >
           <Trans i18nKey="consent:paragraph3">
-            By checking the below boxes, you acknowledge that you have
-            read and understood the Virufy <Link to={privacyPolicy[currentCountry]} target="_blank">Privacy Policy</Link>, and that
-            you are providing your explicit consent to Virufy’s collection
-            and processing of the categories of biometric and health information enumerated below.
-            If you are located inside Brazilian national territory, and for the purposes of the
-            General Personal Data Protection Law (“LGPD”), “consent”, in its free, informed,
-            and unequivocal pronouncement, will be the legal basis on which we process sensitive personal data.
+            By checking the below boxes, you are granting your explicit, freely given, and informed consent to Virufy to
+            collect, process, and share your information for the purposes indicated above and as provided in greater
+            detail in our <Link to={privacyPolicy[currentCountry]} target="_blank">Privacy Policy</Link>. You can print
+            a copy of this Consent Form for your personal records.
           </Trans>
         </WelcomeSubtitle>
+
+        {store?.country === 'Brazil' && (
+          <WelcomeSubtitle fontWeight={400} mb={p3MarginBottom} textAlign="left">
+            <Trans i18nKey="consent:paragraph3_brazil">
+              If you are located inside Brazilian national territory, and for the purposes of the General Personal Data
+              Protection Law (&quot;LGPD&quot;), &quot;consent&quot;, in its free, informed, and unequivocal
+              pronouncement, will be the legal basis on which we process sensitive personal data.
+            </Trans>
+          </WelcomeSubtitle>
+        )}
 
         <Controller
           control={control}
@@ -165,6 +182,52 @@ const Step3 = (p: Wizard.StepProps) => {
                 </Trans>
               )}
               name="agreedPolicyTerms"
+              onChange={e => onChange(e.target.checked)}
+              value={value}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="agreedCovidDetection"
+          defaultValue={false}
+          render={({ onChange, value, name }) => (
+            <Checkbox
+              checkboxLeftOffsetPosition={width && width > 560 ? 64 : 32}
+              fontWeight={width && width > 560 ? 400 : 700}
+              id="Step2-DetectionCovid"
+              label={(
+                <Trans i18nKey="consent:detection">
+                  I hereby acknowledge and agree that processing shall be done for the purposes indicated above and, in
+                  particular but without limitation, for research and compiling a dataset needed for the development of
+                  artificial intelligence algorithms for device-based COVID-19 detection.
+                </Trans>
+              )}
+              name={name}
+              onChange={e => onChange(e.target.checked)}
+              value={value}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="agreedTrainingArtificial"
+          defaultValue={false}
+          render={({ onChange, value, name }) => (
+            <Checkbox
+              checkboxLeftOffsetPosition={width && width > 560 ? 64 : 32}
+              fontWeight={width && width > 560 ? 400 : 700}
+              id="Step2-TrainingArtificial"
+              label={(
+                <Trans i18nKey="consent:signs">
+                  I hereby acknowledge and agree that processing shall be done for the purposes indicated above and, in
+                  particular but without limitation, for training artificial intelligence algorithms to analyze cough
+                  audio recordings to better determine signs of COVID-19.
+                </Trans>
+              )}
+              name={name}
               onChange={e => onChange(e.target.checked)}
               value={value}
             />

@@ -34,6 +34,8 @@ export async function doSubmit({
 
       agreedConsentTerms,
       agreedPolicyTerms,
+      agreedCovidDetection,
+      agreedTrainingArtificial,
     } = state.welcome;
 
     const {
@@ -68,6 +70,8 @@ export async function doSubmit({
 
     body.append('agreedConsentTerms', agreedConsentTerms);
     body.append('agreedPolicyTerms', agreedPolicyTerms);
+    body.append('agreedCovidDetection', agreedCovidDetection);
+    body.append('agreedTrainingArtificial', agreedTrainingArtificial);
 
     body.append('cough', recordYourCough.recordingFile || recordYourCough.uploadedFile);
     if (!removeSpeechIn.includes(country)) {
