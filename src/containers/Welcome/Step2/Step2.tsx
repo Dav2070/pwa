@@ -18,6 +18,7 @@ import { colors } from 'theme';
 
 // Utils
 import { scrollToTop } from 'helper/scrollHelper';
+import { getSpeechContext } from 'helper/stepsDefinitions';
 
 // Styles
 import {
@@ -99,7 +100,7 @@ const Step2 = (p: Wizard.StepProps) => {
           </Trans>
         </WelcomeSubtitle>
         <WelcomeSubtitle fontWeight={400} mt={20} textAlign="left" fontColor={colors.darkBlack}>
-          <Trans i18nKey="helpVirufy:paragraph3">
+          <Trans i18nKey="helpVirufy:paragraph3" tOptions={{ context: getSpeechContext() }}>
             <WelcomeSubtitleBold>
               Donate your cough to help Virufy learn what COVID sounds like.
             </WelcomeSubtitleBold>

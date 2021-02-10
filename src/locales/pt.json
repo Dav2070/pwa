@@ -13,7 +13,8 @@
     "noteContent": "Este formulário é apenas para coleta de dados. Ele não irá diagnosticar COVID-19 em você.",
     "paragraph1": "<0>Virufy</0> é um projeto do Laboratório de Inovação para a Resposta ao COVID-19 de Stanford que <2>atualmente desenvolvendo uma tecnologia para prever infecções da COVID-19 em questão de minutos, baseado nos sons das tosses.</2> Somos um time de mais de 40 jovens e estudantes entusiasmados e ambiciosos de mais de 20 universidades, com um alcance global de mais de 10 países. Nosso trabalho é respaldado por meio de nossos próprios estudos clínicos, assim como por meio da pesquisa de instituições que incluem Carnegie Mellon, MIT, e Cambridge. <4>Clique aqui</4> para saber mais sobre esta pesquisa.",
     "paragraph2": "Nosso objetivo é tornar os testes e cuidados com a saúde <1>mais acessíveis globalmente</1>. Precisamos da sua ajuda!",
-    "paragraph3": "<0>Doe sua tosse para ajudar a Virufy a aprender como o som da COVID parece.</0> Seu tempo e sua contribuição nesse estudo podem impactar não apenas as pessoas da sua comunidade, mas também milhões de vidas ao redor de mais de 190 países!",
+    "paragraph3_cough": "<0>Doe sua tosse para ajudar a Virufy a aprender como o som da COVID parece.</0> Seu tempo e sua contribuição nesse estudo podem impactar não apenas as pessoas da sua comunidade, mas também milhões de vidas ao redor de mais de 190 países!",
+    "paragraph3_voice": "<0>Doe sua tosse e sua voz para ajudar a Virufy a aprender como o som da COVID parece.</0> Seu tempo e sua contribuição nesse estudo podem impactar não apenas as pessoas da sua comunidade, mas também milhões de vidas ao redor de mais de 190 países!",
     "nextButton": "Próximo"
   },
   "consent": {
@@ -31,7 +32,8 @@
     "title": "Por último, antes de começarmos...",
     "subtitle": "Para reduzir o risco e a automutilação, recomendamos que você:",
     "advise1": "Por favor, use seu próprio dispositivo e use uma máscara quando apropriado.",
-    "advise2": "Desinfecte seu dispositivo e qualquer superfície afetada ou próxima após a gravação da sua tosse.",
+    "advise2_cough": "Desinfecte seu dispositivo e qualquer superfície afetada ou próxima após a gravação da sua tosse.",
+    "advise2_voice": "Desinfecte seu dispositivo e qualquer superfície afetada ou próxima após a gravação da sua tosse/fala.",
     "advise3": "Se você possuir qualquer condição que aumente seus riscos ao tossir, por favor, entre em contato com seu médico antes de participar.",
     "advise4": "Se você perceber que seus sintomas estão piorando, por favor, busque imediatamente por um atendimento médico local",
     "startButton": "Começar"
@@ -216,7 +218,8 @@
   "beforeSubmit": {
     "headText": "Compartilhe seu contato (opcional)",
     "title": "Nós ainda precisamos da sua ajuda para lutar contra essa pandemia",
-    "paragraph1": "A sua doação significa muito para nós e ficaríamos muito felizes se você voltasse a doar! Os sons da tosse e da fala podem mudar, e compreender e aprender com essas mudanças fortalecerá nossa pesquisa científica.",
+    "paragraph1_cough": "A sua doação significa muito para nós e ficaríamos muito felizes se você voltasse a doar! Os sons da tosse podem mudar, e compreender e aprender com essas mudanças fortalecerá nossa pesquisa científica.",
+    "paragraph1_voice": "A sua doação significa muito para nós e ficaríamos muito felizes se você voltasse a doar! Os sons da tosse e da fala podem mudar, e compreender e aprender com essas mudanças fortalecerá nossa pesquisa científica.",
     "paragraph2": "Se estiver interessado em continuar a contribuir para as suas comunidades e para o mundo através da Virufy, queira partilhar as suas informações de contacto para que possamos dar-lhe seguimento (por exemplo, podemos desejar enviar-lhe uma mensagem de verificação e lembretes por e-mail, WhatsApp, ou SMS para carregar amostras de tosse subsequentes ou para o contactar em relação ao seu estatuto COVID-19).",
     "phoneLabel": "Qual é o seu número celular?",
     "phonePlaceholder": "Número do seu celular",
@@ -227,7 +230,8 @@
   },
   "thankyou": {
     "title": "Obrigada por submeter suas respostas!",
-    "paragraph1": "Sua doação de tosse deixa a Virufy um passo mais próximo de mudar o mundo.",
+    "paragraph1_cough": "Sua doação de tosse deixa a Virufy um passo mais próximo de mudar o mundo.",
+    "paragraph1_voice": "Sua doação de tosse e fala deixa a Virufy um passo mais próximo de mudar o mundo.",
     "paragraph2": "Sua identificação única de apresentação:",
     "paragraph3": "Se, posteriormente, você desenvolver sintomas como tosse, febre ou falta de ar, volte, por favor, para submeter uma nova amostra.",
     "downloadApp": "<1>Instale o aplicativo.</1>",

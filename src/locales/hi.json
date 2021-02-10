@@ -2,7 +2,7 @@
   "main": {
     "title": "COVID-19 Data Collection Form",
     "paragraph1": "This form will take about 2 minutes to complete. \nBefore you begin, please select your language.",
-    "paragraph2": "Our study is currently only open to people within the below countries and/or territories. Please confirm that you are within territory of one of these countries.",
+    "paragraph2": "Our study is currently only open to people within the below countries and/or territories. Please confirm that you are within one of these locations.",
     "selectCountry": "Select country",
     "selectRegion": "Select region",
     "nextButton": "Next"
@@ -12,8 +12,9 @@
     "noteTitle": "Please note:",
     "noteContent": "This form is for data collection only. It will not predict your COVID-19 status.",
     "paragraph1": "<0>Virufy</0> is a Stanford COVID-19 Response Innovation Lab project that <2>is currently developing technology to predict COVID-19 infections within minutes, based on cough sounds.</2> We are a team of 50+ enthusiastic and ambitious youth and students from 25+ universities, with a global reach spanning 15+ countries. Our work is backed by our own clinical studies, as well as research from institutions including Carnegie Mellon, MIT, and Cambridge. <4>Click here</4> to learn more about our research.",
-    "paragraph2": "Our goal is to make testing and healthcare more <1>globally accessible.</1> We need your help!",
-    "paragraph3": "<0>Donate your cough and voice to help Virufy learn what COVID sounds like.</0> Your time and contributions to this study can impact not only the people in your own community, but also hundreds of millions of lives across 190+ countries!",
+    "paragraph2": "Our goal is to <1>increase access to testing and and healthcare around the globe.</1> We need your help!",
+    "paragraph3_cough": "<0>Donate your cough to help Virufy learn what COVID sounds like.</0> Your time and contributions to this study can benefit your own community, as well as the lives of millions of people across 190+ countries!",
+    "paragraph3_voice": "<0>Donate your cough and voice to help Virufy learn what COVID sounds like.</0> Your time and contributions to this study can benefit your own community, as well as the lives of millions of people across 190+ countries!",
     "nextButton": "Next"
   },
   "consent": {
@@ -24,13 +25,15 @@
     "paragraph3": "By checking the below boxes, you acknowledge that you have read and understood the Virufy <1>Privacy Policy</1>, and that you are providing your explicit consent to Virufy’s collection and processing of the categories of biometric and health information enumerated below. If you are located inside Brazilian national territory, and for the purposes of the General Personal Data Protection Law (“LGPD”), “consent”, in its free, informed, and unequivocal pronouncement, will be the legal basis on which we process sensitive personal data.",
     "certify": "I certify that I am at least 18 years old and agree to the terms of the consent form.",
     "agree": "I agree to the terms of the Virufy <1>Privacy Policy<1>.",
-    "nextButton": "Next"
+    "nextButton": "Next",
+    "jumpToBottom": "Jump To Bottom"
   },
   "beforeStart": {
     "title": "Lastly, before we begin...",
     "subtitle": "To reduce risk and self-harm, we advise you to:",
     "advise1": "Please use your own device and wear a mask when appropiate.",
-    "advise2": "Disinfect your device and any affected or nearby surfaces after recording your cough/speech.",
+    "advise2_cough": "Disinfect your device and any affected or nearby surfaces after recording your cough.",
+    "advise2_voice": "Disinfect your device and any affected or nearby surfaces after recording your cough/speech.",
     "advise3": "If you have an underlying condition that increases your risk from coughing, please check with your health care provider before participating.",
     "advise4": "If you feel your symptoms are getting worse, please contact your local medical response.",
     "startButton": "Start"
@@ -38,17 +41,18 @@
   "recordingsIntroduction": {
     "recordCough": {
       "header": "Record your cough",
+      "title": "Instructions",
       "intro1": "Please cough away from others around you! If you are feeling ill, please sit down.",
-      "intro2": " In a quiet environment, please press record and intentionally cough around 3-5 times."
+      "intro2": "In a quiet environment, please press record and intentionally cough around 3-5 times."
     },
     "recordSpeech": {
       "header": "Record your speech",
       "intro1": "The sound of your voice can also help us learn what COVID sounds like! 'Please press record and count clearly from one to ten."
     },
-    "next": "OK",
+    "next": "Next",
     "releaseButtonStart": "Release to start recording",
     "releaseButtonStop": "Release to stop recording",
-    "shortRecording": "Please, make a recording of at least 3 seconds"
+    "shortRecording": "Please make a recording of at least 3 seconds"
   },
   "recordingsRecord": {
     "recordCough": {
@@ -57,10 +61,10 @@
     "recordSpeech": {
       "header": "Record your speech"
     },
-    "next": "Done",
+    "next": "Continue",
     "delete": "Delete",
-    "text": "Click the record button and cough intentionally 3 to 5 times. When you are done, click submit.",
-    "textCount": "Click the record button and count clearly from one to ten. When you are done, click submit.",
+    "text": "Click the record button and cough intentionally 3 to 5 times. When you are done, click continue.",
+    "textCount": "Click the record button and count clearly from one to ten. When you are done, click continue.",
     "upload": "UPLOAD"
   },
   "recordingsRecordManual": {
@@ -70,14 +74,14 @@
     "next": "Done",
     "micError": "Can’t access the mic?",
     "micErrorDescription": "Please upload an audio file here.",
-    "fileDurationTooShort": "Please, upload a file of at least 3 seconds",
-    "fileSizeTooBig": "Please, upload a file of less than 5 MB",
-    "fileRequired": "Please, upload a file"
+    "fileDurationTooShort": "Please upload a file of at least 3 seconds",
+    "fileSizeTooBig": "Please upload a file of less than 5 MB",
+    "fileRequired": "Please upload a file"
   },
   "recordingsListen": {
     "recordCough": {
       "header": "Record your cough",
-      "intro1": "Please cough away from others around you! If you are feeling ill, please sit down.",
+      "intro1": "Please cough away from others around you! Please sit down if you are feeling ill.",
       "intro2": " In a quiet environment, please press record and intentionally cough around 3-5 times."
     },
     "recordSpeech": {
@@ -91,7 +95,7 @@
   "questionary": {
     "headerText": "Answer short questions",
     "title": "Let’s answer some questions!",
-    "caption": "Please answer to the best of your ability.",
+    "caption": "Please answer the following to the best of your ability.",
     "testTaken": {
       "question": "Which of the following tests have you taken for COVID-19?",
       "options": {
@@ -214,7 +218,8 @@
   "beforeSubmit": {
     "headText": "Share your contact info (optional)",
     "title": "We still need your help to fight this pandemic!",
-    "paragraph1": "Your donation means a lot to us and we would love for you to donate again! Cough and speech sounds can change, and understanding and learning from these changes will strengthen our scientific research.",
+    "paragraph1_cough": "Your donation means a lot to us and we would love for you to donate again! Cough sounds can change, and understanding and learning from these changes will strengthen our scientific research.",
+    "paragraph1_voice": "Your donation means a lot to us and we would love for you to donate again! Cough and speech sounds can change, and understanding and learning from these changes will strengthen our scientific research.",
     "paragraph2": "If you are interested in continuing to contribute to your communities and the world through Virufy, please share your contact information so that we can follow up with you (for example, we may wish to send you a verification message and reminders by email, WhatsApp, or SMS to upload subsequent cough samples or to contact you in relation to your COVID-19 status).",
     "phoneLabel": "What is your mobile phone number?",
     "phonePlaceholder": "Your phone number",
@@ -225,7 +230,8 @@
   },
   "thankyou": {
     "title": "Thank you for submitting.",
-    "paragraph1": "Your cough and speech donation brings Virufy one step closer to changing the world.",
+    "paragraph1_cough": "Your cough donation brings Virufy one step closer to changing the world.",
+    "paragraph1_voice": "Your cough and speech donation brings Virufy one step closer to changing the world.",
     "paragraph2": "Your unique submission id:",
     "paragraph3": "If you later develop symptoms such as cough, fever, or shortness of breath, please come back to resubmit your latest cough sounds.",
     "downloadApp": "<1>Install the app.</1>",

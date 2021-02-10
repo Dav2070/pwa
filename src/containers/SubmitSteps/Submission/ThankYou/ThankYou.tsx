@@ -14,6 +14,7 @@ import { resetStore } from 'utils/wizard';
 
 // Utils
 import { scrollToTop } from 'helper/scrollHelper';
+import { getSpeechContext } from 'helper/stepsDefinitions';
 
 // Data
 import { feedbackForm } from 'data/feedbackForm';
@@ -91,7 +92,7 @@ const ThankYou = (p: Wizard.StepProps) => {
         <ThankYouLogo />
       </Link>
       <ThankYouTitle>{t('thankyou:title')}</ThankYouTitle>
-      <BeforeSubmitText>{t('thankyou:paragraph1')}</BeforeSubmitText>
+      <BeforeSubmitText>{t('thankyou:paragraph1', { context: getSpeechContext() })}</BeforeSubmitText>
       {submissionId && (
       <BeforeSubmitText>{t('thankyou:paragraph2')}{' '}
         <ThankYouSubmissionId>{submissionId}</ThankYouSubmissionId>

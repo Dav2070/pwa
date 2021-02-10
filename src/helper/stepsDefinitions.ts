@@ -31,6 +31,14 @@ export function getCountry() {
   return data?.welcome?.country ?? '';
 }
 
+export function getSpeechContext() {
+  const country = getCountry();
+  if (removeSpeechIn.includes(country)) {
+    return 'cough';
+  }
+  return 'voice';
+}
+
 function getCoughSteps(storeKey: string, country: string) {
   return [
     {

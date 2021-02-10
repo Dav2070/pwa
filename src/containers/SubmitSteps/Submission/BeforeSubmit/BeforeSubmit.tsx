@@ -22,6 +22,7 @@ import useHeaderContext from 'hooks/useHeaderContext';
 
 // Utils
 import { scrollToTop } from 'helper/scrollHelper';
+import { getSpeechContext } from 'helper/stepsDefinitions';
 
 // Styles
 import WizardButtons from 'components/WizardButtons';
@@ -234,7 +235,7 @@ const BeforeSubmit = ({
       <ProgressIndicator currentStep={metadata?.progressCurrent || 4} totalSteps={metadata?.progressTotal || 4} />
       <BeforeSubmitLayout>
         <BeforeSubmitTitle>{t('beforeSubmit:title')}</BeforeSubmitTitle>
-        <BeforeSubmitText>{t('beforeSubmit:paragraph1')}</BeforeSubmitText>
+        <BeforeSubmitText>{t('beforeSubmit:paragraph1', { context: getSpeechContext() })}</BeforeSubmitText>
       </BeforeSubmitLayout>
       <BeforeSubmitImage />
       <BeforeSubmitLayout>
