@@ -12,6 +12,7 @@ import * as Yup from 'yup';
 // Components
 import WizardButtons from 'components/WizardButtons';
 import Dropdown from 'components/Dropdown';
+import CreatedBy from 'components/CreatedBy';
 
 // Update Action
 import { updateAction } from 'utils/wizard';
@@ -187,8 +188,10 @@ const Step1 = (p: Wizard.StepProps) => {
               leftHandler={handleSubmit(onSubmit)}
               leftDisabled={!isValid}
             />
+            <CreatedBy inline />
           </Portal>
         )}
+
       </WelcomeContent>
     </WelcomeStyledForm>
   );

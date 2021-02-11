@@ -5,7 +5,8 @@
     "paragraph2": "Nuestro estudio actualmente está abierto sólo a personas dentro de los países y/o territorios listados debajo. Por favor confirme que está dentro del territorio de alguno de estos países.",
     "selectCountry": "Seleccione país",
     "selectRegion": "Seleccione region",
-    "nextButton": "Siguiente"
+    "nextButton": "Siguiente",
+    "createdBy": "Creado por"
   },
   "helpVirufy": {
     "title": "¡Ayude a Virufy a hacer de su smartphone un kit de testeo de COVID-19 instantáneo!",

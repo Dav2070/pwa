@@ -202,4 +202,5 @@ export const WelcomeJumpToBottomContainer = styled.div`
 
 export const RegionContainer = styled.div`
   margin-top: 8px;
+  text-align: center;
 `;

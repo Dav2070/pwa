@@ -23,6 +23,7 @@ import { feedbackForm } from 'data/feedbackForm';
 import useHeaderContext from 'hooks/useHeaderContext';
 import usePWAHelpers from 'hooks/usePWAHelpers';
 
+import CreatedBy from 'components/CreatedBy';
 import {
   BeforeSubmitText, ThankYouLayout, ThankYouLogo, ThankYouTitle, ThankYouSubmissionId, InstallPwa,
 } from './style';
@@ -124,6 +125,8 @@ const ThankYou = (p: Wizard.StepProps) => {
         </Trans>
       </BeforeSubmitText>
       <SocialIcons />
+
+      <CreatedBy inline={false} color="#00A588" />
 
       {/* Bottom Buttons */}
       <Portal>
