@@ -68,11 +68,3 @@ export const BeforeSubmitImage = styled(BeforeSubmitSvg)`
     margin-bottom: 0;
   }
 `;
-
-export const RecaptchaContainer = styled.div`
-  margin: 20px 0;
-  
-  div {
-    margin: auto;
-  }
-`;

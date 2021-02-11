@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import usePortal from 'react-useportal';
 import { useTranslation } from 'react-i18next';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 // Form
 import { useForm, Controller } from 'react-hook-form';
@@ -10,25 +9,26 @@ import { useStateMachine } from 'little-state-machine';
 import { yupResolver } from '@hookform/resolvers';
 import { ErrorMessage } from '@hookform/error-message';
 import * as Yup from 'yup';
-import useAxios from 'hooks/useAxios';
 
 // Update Action
 import { updateAction } from 'utils/wizard';
 
 // Components
 import ProgressIndicator from 'components/ProgressIndicator';
+import Recaptcha from 'components/Recaptcha';
 
 // Header Control
 import useHeaderContext from 'hooks/useHeaderContext';
 
 // Utils
 import { scrollToTop } from 'helper/scrollHelper';
+import { doSubmit } from 'helper/submitHelper';
 
 // Styles
 import OptionList from 'components/OptionList';
 import WizardButtons from 'components/WizardButtons';
 import {
-  QuestionText, QuestionStepIndicator, GrayExtraInfo, TempBeforeSubmitError, TempReCaptchaContainer,
+  QuestionText, QuestionStepIndicator, GrayExtraInfo, TempBeforeSubmitError,
 } from '../style';
 
 const schema = Yup.object({
@@ -49,7 +49,7 @@ const Step6 = ({
   });
   const { setDoGoBack, setTitle } = useHeaderContext();
   const history = useHistory();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { state, action } = useStateMachine(updateAction(storeKey));
 
   // States
@@ -68,7 +68,6 @@ const Step6 = ({
   const [submitError, setSubmitError] = React.useState<string | null>(null);
   const [captchaValue, setCaptchaValue] = React.useState<string | null>(null);
   const { isSubmitting } = formState;
-  const axiosClient = useAxios();
 
   useEffect(() => {
     if (!captchaValue) {
@@ -77,127 +76,16 @@ const Step6 = ({
   }, [captchaValue]);
 
   const onSubmit = async (values: Step6Type) => {
-    try {
-      setSubmitError(null);
-      if (values) {
-        const {
-          language,
-          country,
-
-          agreedConsentTerms,
-          agreedPolicyTerms,
-        } = state.welcome;
-
-        const {
-          recordYourCough,
-          recordYourSpeech,
-
-          testTaken,
-          pcrTestDate,
-          pcrTestResult,
-          antigenTestDate,
-          antigenTestResult,
-
-          ageGroup,
-          gender,
-          biologicalSex,
-
-          smokeLastSixMonths,
-          currentSymptoms,
-          symptomsStartedDate,
-          currentRespiratoryCondition,
-          currentMedicalCondition,
-
-        } = state['submit-steps'];
-
-        const body = new FormData();
-
-        body.append('language', language);
-        body.append('country', country);
-
-        body.append('agreedConsentTerms', agreedConsentTerms);
-        body.append('agreedPolicyTerms', agreedPolicyTerms);
-
-        body.append('cough', recordYourCough.recordingFile || recordYourCough.uploadedFile);
-        body.append('voice', recordYourSpeech.recordingFile || recordYourSpeech.uploadedFile);
-
-        body.append('testTaken', testTaken.join(','));
-
-        if (testTaken.includes('pcr')) {
-          body.append('pcrTestDate', pcrTestDate.toISOString());
-          body.append('pcrTestResult', pcrTestResult);
-        }
-
-        if (testTaken.includes('antigen')) {
-          body.append('antigenTestDate', antigenTestDate.toISOString());
-          body.append('antigenTestResult', antigenTestResult);
-        }
-
-        if (ageGroup !== 'unselected') {
-          body.append('ageGroup', ageGroup);
-        }
-
-        const genderSelected = gender.other || gender.selected[0];
-
-        if (genderSelected) {
-          body.append('gender', genderSelected);
-        }
-
-        if (biologicalSex) {
-          body.append('biologicalSex', biologicalSex);
-        }
-
-        if (smokeLastSixMonths) {
-          body.append('smokeLastSixMonths', smokeLastSixMonths);
-        }
-
-        if (currentSymptoms?.selected?.length > 0) {
-          body.append('currentSymptoms', currentSymptoms.selected.join(','));
-        }
-
-        if (symptomsStartedDate) {
-          body.append('symptomsStartedDate', symptomsStartedDate.toISOString());
-        }
-
-        if (currentRespiratoryCondition?.selected?.length > 0) {
-          body.append('currentRespiratoryCondition', currentRespiratoryCondition.selected.join(','));
-        }
-
-        if (currentMedicalCondition?.selected?.length > 0) {
-          body.append('currentMedicalCondition', currentMedicalCondition.selected.join(','));
-        }
-
-        if (currentSymptoms?.other) {
-          body.append('otherSymptoms', currentSymptoms?.other);
-        }
-
-        if (currentRespiratoryCondition?.other) {
-          body.append('otherRespiratoryConditions', currentRespiratoryCondition?.other);
-        }
-
-        if (currentMedicalCondition?.other) {
-          body.append('otherMedicalConditions', currentMedicalCondition?.other);
-        }
-
-        if (captchaValue) {
-          body.append('captchaValue', captchaValue);
-        }
-
-        const response = await axiosClient.post('saveSurvey', body, {
-          headers: {
-            'Content-Type': 'multipart/form-data; boundary=SaveSurvey',
-          },
-        });
-
-        action({});
-
-        if (nextStep && response.data?.submissionId) {
-          setActiveStep(false);
-          history.push(nextStep, { submissionId: response.data.submissionId });
-        }
-      }
-    } catch (error) {
-      setSubmitError(t('beforeSubmit:submitError'));
+    if (values) {
+      await doSubmit({
+        setSubmitError: s => setSubmitError(!s ? null : t(s)),
+        state,
+        captchaValue,
+        action,
+        nextStep,
+        setActiveStep,
+        history,
+      });
     }
   };
 
@@ -231,7 +119,7 @@ const Step6 = ({
 
   return (
     <>
-      <ProgressIndicator currentStep={4} totalSteps={4} />
+      <ProgressIndicator currentStep={metadata?.progressCurrent || 3} totalSteps={metadata?.progressTotal || 4} />
 
       <GrayExtraInfo>{t('questionary:caption')}</GrayExtraInfo>
 
@@ -301,13 +189,7 @@ const Step6 = ({
             </QuestionStepIndicator>
           )}
           { /* ReCaptcha  */}
-          <TempReCaptchaContainer>
-            <ReCAPTCHA
-              sitekey={process.env.REACT_APP_RECAPTCHA_KEY || ''}
-              onChange={setCaptchaValue}
-              hl={i18n.language}
-            />
-          </TempReCaptchaContainer>
+          <Recaptcha onChange={setCaptchaValue} />
           {submitError && (
           <TempBeforeSubmitError>
             {submitError}

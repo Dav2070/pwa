@@ -17,6 +17,7 @@ import { colors } from 'theme';
 
 // Utils
 import { scrollToTop } from 'helper/scrollHelper';
+import { getSpeechContext } from 'helper/stepsDefinitions';
 
 // Styles
 import {
@@ -90,7 +91,7 @@ const Step4 = (p: Wizard.StepProps) => {
 
       <WelcomeItemList>
         <WelcomeItemListItem>{t('beforeStart:advise1')}</WelcomeItemListItem>
-        <WelcomeItemListItem>{t('beforeStart:advise2')}</WelcomeItemListItem>
+        <WelcomeItemListItem>{t('beforeStart:advise2', { context: getSpeechContext() })}</WelcomeItemListItem>
         <WelcomeItemListItem>{t('beforeStart:advise3')}</WelcomeItemListItem>
         <WelcomeItemListItem>{t('beforeStart:advise4')}</WelcomeItemListItem>
       </WelcomeItemList>

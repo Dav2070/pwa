@@ -101,8 +101,8 @@ const Introduction = ({
     <>
       <MainContainer>
         <ProgressIndicator
-          currentStep={isCoughLogic ? 1 : 2}
-          totalSteps={4}
+          currentStep={metadata?.progressCurrent || (isCoughLogic ? 1 : 2)}
+          totalSteps={metadata?.progressTotal || 4}
         />
         <InstructionTitle>{t('recordingsIntroduction:recordCough.title')}</InstructionTitle>
         {

@@ -4,23 +4,26 @@ import { useTranslation, Trans } from 'react-i18next';
 import { useStateMachine } from 'little-state-machine';
 import usePortal from 'react-useportal';
 
-// Header Control
-import useHeaderContext from 'hooks/useHeaderContext';
-
 // Components
 import SocialIcons from 'components/SocialIcons';
 import WizardButtons from 'components/WizardButtons';
 import Link from 'components/LinkGreen';
 
 // Utils
+import { resetStore } from 'utils/wizard';
+
+// Utils
 import { scrollToTop } from 'helper/scrollHelper';
+import { getSpeechContext } from 'helper/stepsDefinitions';
 
 // Data
 import { feedbackForm } from 'data/feedbackForm';
 
 // Hooks
+import useHeaderContext from 'hooks/useHeaderContext';
 import usePWAHelpers from 'hooks/usePWAHelpers';
 
+import CreatedBy from 'components/CreatedBy';
 import {
   BeforeSubmitText, ThankYouLayout, ThankYouLogo, ThankYouTitle, ThankYouSubmissionId, InstallPwa,
 } from './style';
@@ -39,7 +42,7 @@ const ThankYou = (p: Wizard.StepProps) => {
 
   const [, setActiveStep] = useState(true);
   const { setDoGoBack, setTitle } = useHeaderContext();
-  const { state } = useStateMachine();
+  const { state, action } = useStateMachine(resetStore());
   const { handlePrompt, isInstalled, setIsInstalled } = usePWAHelpers(installPwaButtonId);
 
   const lang: FeedbackLanguage = state.welcome.language;
@@ -49,10 +52,11 @@ const ThankYou = (p: Wizard.StepProps) => {
   const submissionId = location.state?.submissionId;
 
   const handleNext = React.useCallback(() => {
+    action({});
     if (p.nextStep) {
       history.push(p.nextStep);
     }
-  }, [history, p.nextStep]);
+  }, [action, history, p.nextStep]);
 
   const handleDoBack = useCallback(() => {
     if (p.previousStep) {
@@ -89,7 +93,7 @@ const ThankYou = (p: Wizard.StepProps) => {
         <ThankYouLogo />
       </Link>
       <ThankYouTitle>{t('thankyou:title')}</ThankYouTitle>
-      <BeforeSubmitText>{t('thankyou:paragraph1')}</BeforeSubmitText>
+      <BeforeSubmitText>{t('thankyou:paragraph1', { context: getSpeechContext() })}</BeforeSubmitText>
       {submissionId && (
       <BeforeSubmitText>{t('thankyou:paragraph2')}{' '}
         <ThankYouSubmissionId>{submissionId}</ThankYouSubmissionId>
@@ -121,6 +125,8 @@ const ThankYou = (p: Wizard.StepProps) => {
         </Trans>
       </BeforeSubmitText>
       <SocialIcons />
+
+      <CreatedBy inline={false} color="#00A588" />
 
       {/* Bottom Buttons */}
       <Portal>

@@ -25,6 +25,7 @@ import {
 } from './style';
 
 const audioMaxSizeInMb = 5;
+const audioMinLength = 3; // in seconds
 
 const schema = Yup.object({
   recordingFile: Yup.mixed()
@@ -44,7 +45,7 @@ const schema = Yup.object({
 
         audio.load();
         await new Promise(resolver => audio.addEventListener('loadedmetadata', resolver));
-        return (audio.duration >= 5);
+        return (audio.duration >= audioMinLength);
       }
       return !!value;
     }),

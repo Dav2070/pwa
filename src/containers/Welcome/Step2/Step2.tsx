@@ -18,6 +18,7 @@ import { colors } from 'theme';
 
 // Utils
 import { scrollToTop } from 'helper/scrollHelper';
+import { getSpeechContext } from 'helper/stepsDefinitions';
 
 // Styles
 import {
@@ -99,9 +100,9 @@ const Step2 = (p: Wizard.StepProps) => {
           </Trans>
         </WelcomeSubtitle>
         <WelcomeSubtitle fontWeight={400} mt={20} textAlign="left" fontColor={colors.darkBlack}>
-          <Trans i18nKey="helpVirufy:paragraph3">
+          <Trans i18nKey="helpVirufy:paragraph3" tOptions={{ context: getSpeechContext() }}>
             <WelcomeSubtitleBold>
-              Donate your cough and voice to help Virufy learn what COVID sounds like.
+              Donate your cough to help Virufy learn what COVID sounds like.
             </WelcomeSubtitleBold>
             {' '}Your time and contributions to this study can impact not only the people in your own community,
             but also hundreds of millions of lives across 190+ countries!

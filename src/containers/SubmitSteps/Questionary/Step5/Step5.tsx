@@ -15,18 +15,20 @@ import { updateAction } from 'utils/wizard';
 
 // Components
 import ProgressIndicator from 'components/ProgressIndicator';
+import Recaptcha from 'components/Recaptcha';
 
 // Header Control
 import useHeaderContext from 'hooks/useHeaderContext';
 
 // Utils
 import { scrollToTop } from 'helper/scrollHelper';
+import { doSubmit } from 'helper/submitHelper';
 
 // Styles
 import OptionList from 'components/OptionList';
 import WizardButtons from 'components/WizardButtons';
 import {
-  QuestionText, QuestionStepIndicator, GrayExtraInfo,
+  QuestionText, QuestionStepIndicator, GrayExtraInfo, TempBeforeSubmitError,
 } from '../style';
 
 const schema = Yup.object({
@@ -52,6 +54,8 @@ const Step5 = ({
 
   // States
   const [activeStep, setActiveStep] = React.useState(true);
+  const [submitError, setSubmitError] = React.useState<string | null>(null);
+  const [captchaValue, setCaptchaValue] = React.useState<string | null>(null);
 
   // Form
   const {
@@ -80,17 +84,29 @@ const Step5 = ({
   // Handlers
   const onSubmit = async (values: Step5Type) => {
     if (values) {
-      action(values);
-      if (nextStep) {
-        setActiveStep(false);
-        history.push(nextStep);
+      if ((metadata?.current ?? 5) === (metadata?.total ?? 6)) {
+        await doSubmit({
+          setSubmitError: s => setSubmitError(!s ? null : t(s)),
+          state,
+          captchaValue,
+          action,
+          nextStep,
+          setActiveStep,
+          history,
+        });
+      } else {
+        action(values);
+        if (nextStep) {
+          setActiveStep(false);
+          history.push(nextStep);
+        }
       }
     }
   };
 
   return (
     <>
-      <ProgressIndicator currentStep={3} totalSteps={4} />
+      <ProgressIndicator currentStep={metadata?.progressCurrent || 3} totalSteps={metadata?.progressTotal || 4} />
 
       <GrayExtraInfo>{t('questionary:caption')}</GrayExtraInfo>
 
@@ -146,6 +162,14 @@ const Step5 = ({
             <QuestionStepIndicator>
               {metadata.current} {t('questionary:stepOf')} {metadata.total}
             </QuestionStepIndicator>
+          )}
+          {(metadata?.current ?? 5) === (metadata?.total ?? 6) && (
+            <Recaptcha onChange={setCaptchaValue} />
+          )}
+          {submitError && (
+            <TempBeforeSubmitError>
+              {submitError}
+            </TempBeforeSubmitError>
           )}
           <WizardButtons
             invert
