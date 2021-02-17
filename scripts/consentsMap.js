@@ -14,10 +14,12 @@ try {
     fs.appendFileSync(TARGET_PATH, `  ${folder}: {\n    consentLang: [`);
       const files = fs.readdirSync(`${BASE_PATH}/${folder}`, 'utf-8');
       files.forEach(file => {
-        fs.appendFileSync(
-          TARGET_PATH,
-          `\n      '${file}',`
-        );
+        if (file !== '.DS_Store') {
+          fs.appendFileSync(
+            TARGET_PATH,
+            `\n      '${file}',`
+          );
+        }
       });
   
       fs.appendFileSync(

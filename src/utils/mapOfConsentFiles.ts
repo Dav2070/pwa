@@ -11,7 +11,6 @@ export const mapOfConsentFiles = {
   },
   Brazil: {
     consentLang: [
-      '.DS_Store',
       'default.html',
     ],
   },
