@@ -26,14 +26,18 @@ import { countryData, countriesWithStates } from 'data/country';
 
 // Hooks
 import useWindowSize from 'hooks/useWindowSize';
+import usePWAHelpers from 'hooks/usePWAHelpers';
 
 // Utils
 import { scrollToTop } from 'helper/scrollHelper';
 
+// Icon
+import { ReactComponent as DownloadIcon } from 'assets/icons/download.svg';
+
 // Styles
 import {
   WelcomeLogo, WelcomeTitle, WelcomeContent, WelcomeSubtitle, WelcomeStyledForm, WelcomeRequiredFieldText,
-  RegionContainer,
+  RegionContainer, InstallPwa,
 } from '../style';
 
 const schema = Yup.object().shape({
@@ -48,8 +52,11 @@ const schema = Yup.object().shape({
 
 type Step1Type = Yup.InferType<typeof schema>;
 
+const installPwaButtonId = 'virufy-install-button';
+
 const Step1 = (p: Wizard.StepProps) => {
   const { width } = useWindowSize();
+  const { handlePrompt, isInstalled, setIsInstalled } = usePWAHelpers(installPwaButtonId);
 
   const { Portal } = usePortal({
     bindTo: document && document.getElementById('wizard-buttons') as HTMLDivElement,
@@ -84,6 +91,19 @@ const Step1 = (p: Wizard.StepProps) => {
       }
     }
   };
+
+  const handleClickInstall = React.useCallback(() => {
+    if (handlePrompt) {
+      const promise = handlePrompt();
+      if (promise) {
+        promise.then((userChoiceResult: any) => {
+          if (userChoiceResult && userChoiceResult.outcome === 'accepted') {
+            setIsInstalled(true);
+          }
+        });
+      }
+    }
+  }, [handlePrompt, setIsInstalled]);
 
   const resetRegion = () => {
     setValue('region', '', {
@@ -131,8 +151,21 @@ const Step1 = (p: Wizard.StepProps) => {
       <WelcomeLogo />
 
       <WelcomeTitle fontSize={width && width > 560 ? 42 : 34}>{t('main:title')}</WelcomeTitle>
+
+      { !isInstalled
+        && (
+          <InstallPwa id={installPwaButtonId} onClick={handleClickInstall}>
+            <DownloadIcon />
+            {t('main:installApp', 'Install the app on your cell phone.')}
+          </InstallPwa>
+        )}
       <WelcomeContent>
-        <WelcomeSubtitle fontWeight={400} mb={width && width > 560 ? 50 : 30} mt={width && width > 560 ? 0 : -14}>
+        <WelcomeSubtitle
+          fontWeight={400}
+          mb={width && width > 560 ? 50 : 30}
+          mt={width && width > 560 ? 0 : -14}
+          textAlign="center"
+        >
           {t('main:paragraph1')}
         </WelcomeSubtitle>
 
@@ -151,7 +184,7 @@ const Step1 = (p: Wizard.StepProps) => {
           mt={width && width > 560 ? 50 : 35}
           mb={width && width > 560 ? 50 : 29}
           fontWeight={400}
-          textAlign="left"
+          textAlign="center"
         >
           {t('main:paragraph2')}
           <WelcomeRequiredFieldText> *</WelcomeRequiredFieldText>
