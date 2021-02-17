@@ -54,7 +54,7 @@ function getCoughSteps(storeKey: string, country: string) {
         metadata: {
           currentLogic: recordYourCoughLogic,
           progressCurrent: 1,
-          progressTotal: removeSpeechIn.includes(country) ? 3 : 4,
+          progressTotal: removeSpeechIn.includes(country) ? 2 : 3,
         },
       },
     },
@@ -105,7 +105,7 @@ function getSpeechSteps(storeKey: string, country: string) {
         metadata: {
           currentLogic: recordYourSpeechLogic,
           progressCurrent: 2,
-          progressTotal: removeSpeechIn.includes(country) ? 3 : 4,
+          progressTotal: 3,
         },
       },
     },
@@ -137,6 +137,11 @@ function getSpeechSteps(storeKey: string, country: string) {
 }
 
 function getQuestionarySteps(storeKey: string, country: string) {
+  const baseMetadata = {
+    total: removeQuestionaryStep6In.includes(country) ? 5 : 6,
+    progressCurrent: removeSpeechIn.includes(country) ? 2 : 3,
+    progressTotal: removeSpeechIn.includes(country) ? 2 : 3,
+  };
   const output = [
     {
       path: '/questionary/step1a',
@@ -152,9 +157,7 @@ function getQuestionarySteps(storeKey: string, country: string) {
         },
         metadata: {
           current: 1,
-          total: removeQuestionaryStep6In.includes(country) ? 5 : 6,
-          progressCurrent: 3,
-          progressTotal: removeSpeechIn.includes(country) ? 3 : 4,
+          ...baseMetadata,
         },
       },
     },
@@ -167,9 +170,7 @@ function getQuestionarySteps(storeKey: string, country: string) {
         nextStep: `${baseUrl}/questionary/step2`,
         metadata: {
           current: 1,
-          total: removeQuestionaryStep6In.includes(country) ? 5 : 6,
-          progressCurrent: 3,
-          progressTotal: removeSpeechIn.includes(country) ? 3 : 4,
+          ...baseMetadata,
         },
       },
     },
@@ -185,9 +186,7 @@ function getQuestionarySteps(storeKey: string, country: string) {
         },
         metadata: {
           current: 2,
-          total: removeQuestionaryStep6In.includes(country) ? 5 : 6,
-          progressCurrent: 3,
-          progressTotal: removeSpeechIn.includes(country) ? 3 : 4,
+          ...baseMetadata,
         },
       },
     },
@@ -200,9 +199,7 @@ function getQuestionarySteps(storeKey: string, country: string) {
         nextStep: `${baseUrl}/questionary/step4a`,
         metadata: {
           current: 3,
-          total: removeQuestionaryStep6In.includes(country) ? 5 : 6,
-          progressCurrent: 3,
-          progressTotal: removeSpeechIn.includes(country) ? 3 : 4,
+          ...baseMetadata,
         },
       },
     },
@@ -218,9 +215,7 @@ function getQuestionarySteps(storeKey: string, country: string) {
         },
         metadata: {
           current: 4,
-          total: removeQuestionaryStep6In.includes(country) ? 5 : 6,
-          progressCurrent: 3,
-          progressTotal: removeSpeechIn.includes(country) ? 3 : 4,
+          ...baseMetadata,
         },
       },
     },
@@ -233,9 +228,7 @@ function getQuestionarySteps(storeKey: string, country: string) {
         nextStep: `${baseUrl}/questionary/step5`,
         metadata: {
           current: 4,
-          total: removeQuestionaryStep6In.includes(country) ? 5 : 6,
-          progressCurrent: 3,
-          progressTotal: removeSpeechIn.includes(country) ? 3 : 4,
+          ...baseMetadata,
         },
       },
     },
@@ -250,9 +243,7 @@ function getQuestionarySteps(storeKey: string, country: string) {
           : `${baseUrl}/questionary/step6`,
         metadata: {
           current: 5,
-          total: removeQuestionaryStep6In.includes(country) ? 5 : 6,
-          progressCurrent: 3,
-          progressTotal: removeSpeechIn.includes(country) ? 3 : 4,
+          ...baseMetadata,
         },
       },
     },
@@ -269,9 +260,7 @@ function getQuestionarySteps(storeKey: string, country: string) {
         nextStep: `${baseUrl}/thank-you`,
         metadata: {
           current: 6,
-          total: 6,
-          progressCurrent: 3,
-          progressTotal: removeSpeechIn.includes(country) ? 3 : 4,
+          ...baseMetadata,
         },
       },
     });
