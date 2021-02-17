@@ -44,7 +44,7 @@ export const WelcomeTitle = styled.h1<WelcomeTitleProps>`
   margin-top: ${({ mt }) => `${mt || 11}px`};
   margin-bottom: ${({ mb }) => `${mb || 16}px`};
   max-width: 320px;
-  text-align: left;
+  text-align: center;
 
   @media screen and (${props => props.theme.breakpoints.tablet}){
     font-size: ${({ fontSize }) => `${fontSize}px` || '2.25rem'} ;
@@ -119,15 +119,14 @@ export const WelcomeItemListItem = styled.li`
 export const WelcomeSubtitle = styled.h2<WelcomeSubtitleProps>`
   color: ${({ theme, fontColor }) => (fontColor || theme.colors.ultraDarkBlack)};
   font-family: "Source Sans Pro";
-  font-size: 14px;
-  ${({ fontSize = 14 }) => css`font-size: ${fontSize}px`};
-  ${({ lineHeight }) => lineHeight && css`line-height: ${lineHeight}px`};
+  ${({ fontSize = 14 }) => css`font-size: ${fontSize}px;`}
+  ${({ lineHeight }) => lineHeight && css`line-height: ${lineHeight}px;`}
+  ${({ textAlign }) => textAlign && css`text-align: ${textAlign || 'left'};`}
   font-weight: ${props => props.fontWeight};
   margin-bottom: ${({ mb }) => `${mb}px`};
   margin-left: auto;
   margin-right: auto;
   margin-top: ${({ mt }) => `${mt}px`};
-  ${({ textAlign }) => textAlign && css`text-align: ${textAlign || 'left'}`};
   white-space: pre-wrap;
 
   max-width: 320px;
@@ -203,4 +202,17 @@ export const WelcomeJumpToBottomContainer = styled.div`
 export const RegionContainer = styled.div`
   margin-top: 8px;
   text-align: center;
+`;
+
+export const InstallPwa = styled.button`
+  color: ${props => props.theme.colors.green};
+  background-color: transparent;
+  border: 0;
+  font-weight: 700;
+  padding: 0;
+  margin: auto;
+  display: block;
+  > svg {
+    margin-right: 7px;
+  }
 `;
